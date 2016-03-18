@@ -12,6 +12,7 @@ NOTES: For negative numbers ignore negative sign.
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <malloc.h>
 
 struct node {
@@ -20,5 +21,29 @@ struct node {
 };
 
 struct node * numberToLinkedList(int N) {
-	return NULL;
+	struct node *head = NULL;
+	if (N == 0) {
+		struct node *temp = (node *)malloc(sizeof(node));
+		temp->num = N;
+		temp->next = NULL;
+		head = temp;
+	}
+	 else {
+		   N = abs(N);
+	       while (N)
+	       {
+		     struct node *temp = (node *)malloc(sizeof(node));
+		     temp->num = N % 10;
+		     temp->next = NULL;
+		     N /= 10;
+		     if (head == NULL)
+			    head = temp;
+		     else {
+			    temp->next = head;
+			    head = temp;
+		     }
+	     }
+     }
+	 return head;
 }
+
